@@ -7,7 +7,8 @@
 
 int free_sched(char **sched, int sched_alloc_len);
 char** alloc_sched(int sched_alloc_len, int num_nodes);
-int test_all_scheds(char **sched, int makespan);
+int test_all_scheds(char **sched, int makespan, double alpha, int ss_size);
+int is_alpha_good(char **sched, int makespan, double alpha, int ss_size);
 
 int main(int argc, char *argv[]) {
     double alpha = .5;
@@ -23,7 +24,7 @@ int main(int argc, char *argv[]) {
     int makespan;
     for(makespan = 2; ; ++makespan) {
 
-        test_all_scheds(sched, makespan);
+        test_all_scheds(sched, makespan, alpha, ss_size);
 
         if(makespan + 1 > sched_alloc_len) {
             sched_alloc_len *= 2;
@@ -35,9 +36,17 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-int test_all_scheds(char **sched, int makespan) {
-
+int test_all_scheds(char **sched, int makespan, double alpha, int ss_size) {
+    
     return SUCCESS;
+}
+
+int is_alpha_good(char **sched, int makespan, double alpha, int ss_size) {
+    // For each subset of size ss_size
+    //      For each slot of each element
+    //          For each other elem in subset
+    //              Do these collide
+
 }
 
 int free_sched(char **sched, int sched_alloc_len) {
